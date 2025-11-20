@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "870604795414",
+    "project_id": "tp-shop-flutter",
+    "storage_bucket": "tp-shop-flutter.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:870604795414:android:10f4967cb3ef109f46cf37",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwxGaSyiwQDFlhZmRmD3pphLDFW0aEQUs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
