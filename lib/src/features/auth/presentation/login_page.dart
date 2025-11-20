@@ -62,6 +62,32 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
+    Future<void> _signInWithGoogle() async {
+    final authRepo = context.read<AuthRepository>();
+
+    setState(() {
+      _isLoading = true;
+      _errorMessage = null;
+    });
+
+    try {
+      await authRepo.signInWithGoogle();
+      // Le guard go_router s'occupera de la redirection vers /catalog
+    } on Exception catch (e) {
+      setState(() {
+        _errorMessage = 'Connexion Google échouée : ${e.toString()}';
+      });
+    } finally {
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+        });
+      }
+    }
+  }
+
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -132,12 +158,27 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   const SizedBox(height: 8),
+                  SizedBox(
+                    width: double.infinity,
+                    child: OutlinedButton.icon(
+                      onPressed: _isLoading ? null : _signInWithGoogle,
+                      icon: Image.network(
+                        'https://developers.google.com/identity/images/g-logo.png',
+                        height: 18,
+                        // ignore: unnecessary_underscores
+                        errorBuilder: (_, __, ___) => const Icon(Icons.g_mobiledata),
+                      ),
+                      label: const Text('Continuer avec Google'),
+                    ),
+                  ),
+                  const SizedBox(height: 8),
                   TextButton(
                     onPressed: () {
                       context.go('/register');
                     },
                     child: const Text('Créer un compte'),
                   ),
+
                 ],
               ),
             ),
