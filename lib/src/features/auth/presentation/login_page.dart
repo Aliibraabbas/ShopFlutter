@@ -45,10 +45,6 @@ class _LoginPageState extends State<LoginPage> {
         password: _passwordController.text.trim(),
       );
 
-      // Pas besoin de faire un go('/catalog') :
-      // le guard + refreshListenable vont nous rediriger automatiquement.
-      // Mais on peut le faire pour être explicite :
-      // context.go('/catalog');
     } on Exception catch (e) {
       setState(() {
         _errorMessage = 'Impossible de se connecter : ${e.toString()}';
@@ -162,12 +158,7 @@ class _LoginPageState extends State<LoginPage> {
                     width: double.infinity,
                     child: OutlinedButton.icon(
                       onPressed: _isLoading ? null : _signInWithGoogle,
-                      icon: Image.network(
-                        'https://developers.google.com/identity/images/g-logo.png',
-                        height: 18,
-                        // ignore: unnecessary_underscores
-                        errorBuilder: (_, __, ___) => const Icon(Icons.g_mobiledata),
-                      ),
+                      icon: const Icon(Icons.g_mobiledata),
                       label: const Text('Continuer avec Google'),
                     ),
                   ),
